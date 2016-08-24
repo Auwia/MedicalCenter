@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+<title>Insert title here</title>
+<meta charset="utf-8" />
+
+<link href="css/MedicalCenter.css" rel="stylesheet" type="text/css">
+</head>
+<body ng-app="myApp">
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+	<script src="js/app.js"></script>
+
+	<nav>
+		<a href="/html/">HTML</a> | <a href="/css/">CSS</a> | <a href="/js/">JavaScript</a>
+		| <a href="/jquery/">jQuery</a>
+	</nav>
+
+	<form id="register">
+		<h1>Cartella clinica</h1>
+		<fieldset>
+			<legend>Dettagli personali</legend>
+			<div>
+				<label>Codice Fiscale <input id="cf" type="text"
+					maxlength="16" placeholder="MNGMSM81C20A509O" required autofocus>
+				</label>
+			</div>
+			<div>
+				<label>Nome <input id="firstname" type="text"
+					placeholder="Mario" required autofocus>
+				</label>
+			</div>
+			<div>
+				<label>Cognome <input id="lastname" type="text"
+					placeholder="Rossi" required autofocus>
+				</label>
+			</div>
+			<div>
+				<label>Nato a <input id="cityborn" placeholder="Avellino"
+					type="text" required>
+				</label>
+			</div>
+			<div>
+				<label>Data di nascita <input id="birthday"
+					placeholder="dd/mm/yyyy" type="date" required>
+				</label>
+			</div>
+			<div>
+				<label>Telefono <input id="phone" type="tel"
+					placeholder="Eg. +39 328 2658862" required>
+				</label>
+			</div>
+			<div>
+				<label>e-mail <input id="phone" type="email"
+					placeholder="massimo.manganiello@gmail.com" required>
+				</label>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Residenza e/o domicilio</legend>
+			<div>
+				<label>Via, n° <input id="via" type="text"
+					placeholder="Via Passo Serra, 89" required>
+				</label>
+			</div>
+			<div>
+				<label>CAP <input id="cap" type="text" placeholder="83038"
+					required>
+				</label>
+			</div>
+			<div>
+				<label>Comune <input id="comune" type="text"
+					placeholder="Montemiletto" required>
+				</label>
+			</div>
+			<div>
+				<label>Città <input id="city" list="city-names" type="text"
+					required> <datalist id="city-names">
+						<option ng-repeat="city in city-names" label="{{}}" value="{{}}"></option>
+					</datalist>
+				</label>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Anamnesi</legend>
+			<div>
+				<label>A. familiare <textarea id="afamiliare" rows=3
+						type="text" required></textarea>
+				</label>
+			</div>
+			<div>
+				<label>A. fisiologica <textarea id="afisiologica" rows=2
+						type="text" required></textarea>
+				</label>
+			</div>
+			<div>
+				<label>Menarca <input id="menarca" type="text" required></input>
+				</label>
+			</div>
+			<div>
+				<label>Data ultima mestruazione <input id="mestruazione"
+					type="date" placeholder="dd/mm/yyyy" required></input>
+				</label>
+			</div>
+			<div>
+				<label>Fumo <input id="fumo" type="text" required></input>
+				</label>
+			</div>
+			<div>
+				<label>Alcool <input id="alcool" type="text" required></input>
+				</label>
+			</div>
+			<div>
+				<label>A. patologica : malattie sofferte <textarea
+						id="malattie" rows=3 type="text" required></textarea>
+				</label>
+			</div>
+			<div>
+				<label>Interventi chirurgici <textarea
+						id="interventichirurgici" rows=3 type="text" required></textarea>
+				</label>
+			</div>
+			<div>
+				<label>Infortuni <textarea id="infortuni" rows=3 type="text"
+						required></textarea>
+				</label>
+			</div>
+			<article>
+				<h1>Dichiarazione</h1>
+				<p>Io sottoscritto dichiaro di aver informato esattamente il
+					medico delle mie attuali condizioni psico-fisiche e delle affezioni
+					precedenti e di non essere mai stato dichiarato non idoneo in
+					precedenti visitemedico-sportive di legge. Inoltre mi impegno a non
+					fare uso di droghe riconosciute illegali e do atto di essere
+					informato dei pericoli derivanti dal fumo di tabacco e dall’uso di
+					alcool.</p>
+			</article>
+			<article>
+				<h1>Firma del dichiarante</h1>
+				<p>----------------------------------</p>
+			</article>
+		</fieldset>
+		
+	</form>
+
+
+
+	<table>
+		<tr>
+			<td><label>Codice Fiscale</label></td>
+			<td ng-controller="checkFiscalCode"><input type="text" id="cf"
+				ng-blur="controllaCF()" /></td>
+			<td>{{ cfErrorLabel }}</td>
+		</tr>
+		<tr>
+			<td><label>Cognome</label></td>
+			<td><input type="text" name="lastname" /></td>
+			<td>{{ cfErrorLabel }}</td>
+		</tr>
+		<tr>
+			<td><label>Nome</label></td>
+			<td><input type="text" name="firstname" /></td>
+			<td>{{ cfErrorLabel }}</td>
+		</tr>
+		<tr>
+			<td><label>Sesso</label></td>
+			<td><select name="sesso">
+					<option value="">Seleziona</option>
+					<option value="M">Maschio</option>
+					<option value="F">Femmina</option>
+			</select></td>
+			<td>{{ cfErrorLabel }}</td>
+		</tr>
+	</table>
+
+	<button ng-click="saveAnagrafica()">Save</button>
+
+</body>
+</html>
